@@ -1,4 +1,4 @@
 imutils
 flask
-picamera[array]
+#picamera[array]
 Flask-BasicAuth==0.2.0

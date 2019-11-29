@@ -2,20 +2,23 @@ import cv2
 import sys
 from mail import sendEmail
 from flask import Flask, render_template, Response
-from camera import VideoCamera
+from camera import USBCamera
 from flask_basicauth import BasicAuth
 import time
 import threading
 
 email_update_interval = 600 # sends an email only once in this time interval
-video_camera = VideoCamera(flip=True) # creates a camera object, flip vertically
+video_camera = USBCamera(flip=False) # creates a camera object, flip vertically
 object_classifier = cv2.CascadeClassifier("models/fullbody_recognition_model.xml") # an opencv classifier
 
 # App Globals (do not edit)
 app = Flask(__name__)
 app.config['BASIC_AUTH_USERNAME'] = 'CHANGE_ME_USERNAME'
 app.config['BASIC_AUTH_PASSWORD'] = 'CHANGE_ME_PLEASE'
-app.config['BASIC_AUTH_FORCE'] = True
+
+# ----- !!!! Disable the password protection by default !!!! ----------
+app.config['BASIC_AUTH_FORCE'] = False
+
 
 basic_auth = BasicAuth(app)
 last_epoch = 0
