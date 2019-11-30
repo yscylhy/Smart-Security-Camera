@@ -1,3 +1,6 @@
 email_config.txt
 foo.py
 .idea/
+__pycache__/
+*.swp
+
